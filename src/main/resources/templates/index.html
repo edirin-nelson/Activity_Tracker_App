@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <style>
+        /* Center the login and register links */
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+<div class="center">
+    <div>
+        <h1>Welcome to Your Activity Tracker</h1>
+        <p>Please log in or register to get started</p>
+        <p><a th:href="@{/login}">Login</a> | <a th:href="@{/register}">Register</a></p>
+    </div>
+</div>
+</body>
+</html>
