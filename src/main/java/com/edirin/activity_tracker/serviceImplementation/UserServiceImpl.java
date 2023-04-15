@@ -29,6 +29,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users getUser(String username, String password) {
-        return userRepository.findByUsernameAndPassword(username, password).orElse(null);
+        Users users = userRepository.findByUsernameAndPassword(username, password).orElse(null);
+        if (users.checkPassword(users.getPassword(), users.getSalt())){
+            return users;
+        }
+        return null;
     }
 }
