@@ -21,29 +21,29 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public ModelAndView register(){
+    public ModelAndView register() {
         return new ModelAndView("registrationForm", "Form", new UserDTO());
     }
 
     @PostMapping("/register")
-    public String register_a_user(@ModelAttribute UserDTO userDTO){
+    public String register_a_user(@ModelAttribute UserDTO userDTO) {
         Users registeredUser = userService.register(userDTO);
-        return registeredUser!=null?"redirect:/login":"redirect:/register";
+        return registeredUser != null ? "redirect:/login" : "redirect:/register";
     }
 
     @GetMapping("/login")
-    public ModelAndView loginPage(){
+    public ModelAndView loginPage() {
         return new ModelAndView("login", "loginForm", new UserDTO());
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute Users users, HttpServletRequest httpServletRequest){
+    public String login(@ModelAttribute Users users, HttpServletRequest httpServletRequest) {
         Users user = userService.getUser(users.getUsername(), users.getPassword());
-        if (user!=null){
+        if (user != null) {
             HttpSession session = httpServletRequest.getSession();
             session.setAttribute("username", user.getUsername());
             return "redirect:/home";
-        }else return "redirect:/login";
+        } else return "redirect:/login";
     }
 
     @GetMapping("/home")
